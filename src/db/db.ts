@@ -15,6 +15,11 @@ export const getPool = ()=>{
           idleTimeoutMillis: 30000, // Close idle connection
         })
         console.log("Postgres Pool Created")
+        console.log("DB_HOST:", process.env.DB_HOST);
+console.log("DB_USER:", process.env.DB_USER);
+console.log("DB_PASSWORD:", process.env.DB_PASSWORD); // TEMPORARY
+console.log("DB_NAME:", process.env.DB_NAME);
+console.log("DB_PORT:", process.env.DB_PORT);
     }
     else
         console.log("Postgres Pool Exists")
