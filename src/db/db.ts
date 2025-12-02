@@ -11,8 +11,10 @@ export const getPool = ()=>{
           password: process.env.DB_PASSWORD,
           database: process.env.DB_NAME,
           port: Number(process.env.DB_PORT),
-          max: 5,                   // Recommended for AWS Lambda
-          idleTimeoutMillis: 30000, // Close idle connection
+          max: 20,                   // Recommended for AWS Lambda
+          idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
+           ssl: true 
         })
         console.log("Postgres Pool Created")
         console.log("DB_HOST:", process.env.DB_HOST);
