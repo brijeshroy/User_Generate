@@ -1,0 +1,29 @@
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import{ RouteHandler }from "./routes/routeHandler"
+
+export const handler = async (
+  event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
+  let statusCode = 404;
+  let Res : any= { message: "Route not found" }
+  try {
+   const routehandler = new RouteHandler();
+    console.log("Headers:", JSON.stringify(event.headers, null, 2));
+    if(event.path.includes("createUser") && event.httpMethod === "POST")
+      Res =await  routehandler.userCreate(event)
+
+
+       statusCode =200
+     
+
+  
+  } catch (error: unknown) {
+    statusCode = 400
+    Res = error
+ 
+  }
+     return {
+      statusCode,
+      body: JSON.stringify(Res),
+    };
+};
